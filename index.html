@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdelaziz Guelfane | AI Researcher</title>
+<meta name="description" content="AI researcher working on digital twins, reinforcement learning, and multilingual NLP. PhD at CentraleSupélec with GE HealthCare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F5F2;
+    --ink:#16181D;
+    --ink-soft:#4A4D57;
+    --majorelle:#4B4ACF;
+    --majorelle-soft:#E6E6F8;
+    --line:#D8DAD4;
+    --maxw:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Instrument Sans',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--majorelle);color:#fff}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;text-decoration:none;letter-spacing:-.01em}
+  .brand span{color:var(--majorelle)}
+  .nav-links{display:flex;gap:26px;font-family:'Spline Sans Mono',monospace;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+  .nav-links a{text-decoration:none;color:var(--ink-soft);transition:color .15s}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--majorelle)}
+  a:focus-visible{outline:2px solid var(--majorelle);outline-offset:3px;border-radius:2px}
+
+  /* ---------- Hero ---------- */
+  header{padding:84px 0 30px;position:relative;overflow:hidden}
+  .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--majorelle);margin-bottom:18px}
+  h1{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:800;
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    line-height:1.02;
+    letter-spacing:-.025em;
+    max-width:13ch;
+  }
+  h1 em{font-style:normal;color:var(--majorelle)}
+  .hero-sub{margin-top:22px;max-width:54ch;color:var(--ink-soft);font-size:1.05rem}
+  .hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 22px;font-family:'Spline Sans Mono',monospace;font-size:.78rem;color:var(--ink-soft)}
+  .hero-meta b{color:var(--ink);font-weight:500}
+
+  /* Sankey signature */
+  .sankey{display:block;width:100%;height:auto;margin-top:48px}
+  .ribbon{fill:none;stroke-linecap:round;opacity:.85}
+  .flow-dash{stroke-dasharray:7 220; animation:flow 7s linear infinite}
+  .flow-dash.d2{animation-duration:9s;animation-delay:-3s}
+  .flow-dash.d3{animation-duration:11s;animation-delay:-6s}
+  @keyframes flow{to{stroke-dashoffset:-227}}
+  .leak{opacity:.4;stroke-dasharray:3 9}
+  .node-label{font-family:'Spline Sans Mono',monospace;font-size:11px;fill:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+  @media (prefers-reduced-motion: reduce){
+    .flow-dash{animation:none;stroke-dasharray:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:72px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .sec-head h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.7rem;letter-spacing:-.02em}
+  .sec-head .count{font-family:'Spline Sans Mono',monospace;font-size:.78rem;color:var(--ink-soft)}
+
+  /* ---------- Filters ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+  .filters button{
+    font-family:'Spline Sans Mono',monospace;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:transparent;color:var(--ink-soft);
+    cursor:pointer;transition:all .15s;
+  }
+  .filters button:hover{border-color:var(--majorelle);color:var(--majorelle)}
+  .filters button.active{background:var(--majorelle);border-color:var(--majorelle);color:#fff}
+
+  /* ---------- Project cards ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .card{
+    border:1px solid var(--line);border-radius:10px;padding:24px;background:#fff;
+    display:flex;flex-direction:column;gap:12px;
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--majorelle);box-shadow:0 10px 28px -16px rgba(75,74,207,.35)}
+  .card .cat{font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--majorelle)}
+  .card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.15rem;letter-spacing:-.01em;line-height:1.25}
+  .card p{font-size:.92rem;color:var(--ink-soft);flex-grow:1}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tags span{font-family:'Spline Sans Mono',monospace;font-size:.68rem;padding:3px 9px;border-radius:5px;background:var(--majorelle-soft);color:var(--majorelle)}
+  .card .links{font-family:'Spline Sans Mono',monospace;font-size:.74rem}
+  .card .links a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);transition:all .15s}
+  .card .links a:hover{color:var(--majorelle);border-color:var(--majorelle)}
+  .card .credit{font-family:'Spline Sans Mono',monospace;font-size:.68rem;color:var(--ink-soft)}
+  .badge{font-family:'Spline Sans Mono',monospace;font-size:.68rem;color:#fff;background:var(--ink);border-radius:5px;padding:3px 9px;align-self:flex-start}
+
+  /* ---------- Publications ---------- */
+  .pub{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .pub:last-child{border-bottom:none}
+  .pub .venue{font-family:'Spline Sans Mono',monospace;font-size:.74rem;color:var(--majorelle);text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+  .pub h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+  .pub p{font-size:.9rem;color:var(--ink-soft);margin-top:4px}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+  .about-grid p{color:var(--ink-soft);margin-bottom:14px}
+  .about-grid p b{color:var(--ink);font-weight:600}
+  .fact{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+  .fact:first-child{border-top:1px solid var(--line)}
+  .fact .k{font-family:'Spline Sans Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);padding-top:3px}
+
+  /* ---------- Footer ---------- */
+  footer{padding:80px 0 60px;background:var(--ink);color:var(--paper)}
+  footer h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.02em;max-width:18ch}
+  footer h2 em{font-style:normal;color:#9D9CF2}
+  .foot-links{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px}
+  .foot-links a{
+    font-family:'Spline Sans Mono',monospace;font-size:.8rem;text-decoration:none;
+    border:1px solid #3A3D47;border-radius:99px;padding:10px 20px;color:var(--paper);transition:all .15s;
+  }
+  .foot-links a:hover{background:var(--majorelle);border-color:var(--majorelle)}
+  .colophon{margin-top:48px;font-family:'Spline Sans Mono',monospace;font-size:.7rem;color:#7A7D87}
+
+  @media (max-width:760px){
+    .nav-links{display:none}
+    .about-grid{grid-template-columns:1fr}
+    .pub{grid-template-columns:1fr;gap:4px}
+    header{padding-top:56px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">A<span>.</span>Guelfane</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <p class="eyebrow">AI Researcher · Paris</p>
+    <h1>I build models that follow things through the <em>real world</em>.</h1>
+    <p class="hero-sub">
+      Digital twins for global medical supply chains, reinforcement learning under uncertainty,
+      and language models that work beyond English. PhD researcher at CentraleSupélec,
+      in collaboration with GE HealthCare.
+    </p>
+    <div class="hero-meta">
+      <div><b>NeurIPS 2025</b> workshop paper</div>
+      <div><b>Arabic · French · English</b></div>
+      <div><b>CentraleSupélec</b> × GE HealthCare</div>
+    </div>
+
+    <!-- Signature: Sankey flow with one leaking ribbon -->
+    <svg class="sankey" viewBox="0 0 1000 240" role="img" aria-label="Stylized Sankey diagram of material and information flows, with one flow leaking away">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#4B4ACF" stop-opacity=".25"/>
+          <stop offset="1" stop-color="#4B4ACF" stop-opacity=".75"/>
+        </linearGradient>
+      </defs>
+      <!-- ribbons converging then fanning out -->
+      <path class="ribbon" d="M0,40  C250,40 320,110 500,112" stroke="url(#g1)" stroke-width="22"/>
+      <path class="ribbon" d="M0,110 C220,110 330,118 500,120" stroke="url(#g1)" stroke-width="34"/>
+      <path class="ribbon" d="M0,190 C260,190 330,132 500,128" stroke="url(#g1)" stroke-width="16"/>
+      <path class="ribbon" d="M500,114 C680,108 760,60  1000,55"  stroke="url(#g1)" stroke-width="30"/>
+      <path class="ribbon" d="M500,126 C700,130 780,170 1000,175" stroke="url(#g1)" stroke-width="26"/>
+      <!-- the leak -->
+      <path class="ribbon leak" d="M620,128 C700,150 740,205 760,240" stroke="#16181D" stroke-width="7"/>
+      <!-- animated flow particles -->
+      <path class="ribbon flow-dash"    d="M0,40  C250,40 320,110 500,112 C680,108 760,60 1000,55" stroke="#4B4ACF" stroke-width="3"/>
+      <path class="ribbon flow-dash d2" d="M0,110 C220,110 330,118 500,120 C700,124 780,170 1000,175" stroke="#4B4ACF" stroke-width="3"/>
+      <path class="ribbon flow-dash d3" d="M0,190 C260,190 330,132 500,128 C680,118 760,62 1000,57" stroke="#4B4ACF" stroke-width="3"/>
+      <text class="node-label" x="0" y="22">Parts</text>
+      <text class="node-label" x="0" y="92">Data</text>
+      <text class="node-label" x="0" y="172">Decisions</text>
+      <text class="node-label" x="772" y="232">Leakage</text>
+    </svg>
+  </div>
+</header>
+
+<main>
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Projects</h2>
+        <span class="count" id="proj-count"></span>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects by domain">
+        <button class="active" data-f="all">All</button>
+        <button data-f="research">Research</button>
+        <button data-f="twin">Digital Twins &amp; Supply Chain</button>
+        <button data-f="nlp">NLP &amp; LLMs</button>
+        <button data-f="ml">ML &amp; Data Science</button>
+        <button data-f="systems">Systems &amp; Other</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= PUBLICATIONS ================= -->
+  <section id="publications">
+    <div class="wrap">
+      <div class="sec-head"><h2>Publications &amp; Preprints</h2></div>
+
+      <div class="pub">
+        <div class="venue">NeurIPS 2025<br>AI for Science</div>
+        <div>
+          <h3>MA-HGRL: Memory-Augmented Hierarchical Graph Reinforcement Learning for BOM Optimization</h3>
+          <p>A hierarchical graph RL agent with an external memory module for optimizing bills of materials. Extended archival version in preparation for TMLR.</p>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="venue">arXiv 2026</div>
+        <div>
+          <h3>BE-MDP: Budgeted Exploration in Volatile MDPs</h3>
+          <p>Offline-to-online reinforcement learning with an adaptive Lagrangian for exploration under a hard budget, in environments whose dynamics shift over time. Under submission to AAAI 2027.</p>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="venue">In progress</div>
+        <div>
+          <h3>Physical vs. Informational Leakage in Circular Supply Chains</h3>
+          <p>A formal decomposition separating material that truly leaves a circular system from material that only disappears from its records, with estimation methods over ERP transaction data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2>About</h2></div>
+      <div class="about-grid">
+        <div>
+          <p>I'm a PhD researcher at <b>CentraleSupélec (LGI, Université Paris-Saclay)</b>, working with <b>GE HealthCare</b> on AI-driven digital twins for the circular supply chain of MRI and CT spare parts. The core question: when a part disappears from a global system, did it physically leave, or did the data just lose track of it?</p>
+          <p>My toolkit sits at the intersection of <b>reinforcement learning</b>, <b>graph machine learning</b>, and <b>probabilistic modeling</b>, applied to messy, large-scale industrial data. On the side, I care a lot about language models that work natively in <b>Arabic</b> and other underserved languages, which is where my NLP projects live.</p>
+          <p>Before the PhD: a double engineering degree from École Centrale Casablanca and CentraleSupélec (AI specialization), with stops at SLB, Carrefour, and Illuin Technology along the way.</p>
+        </div>
+        <div>
+          <div class="fact"><span class="k">Currently</span><span>PhD Researcher, CentraleSupélec × GE HealthCare</span></div>
+          <div class="fact"><span class="k">Focus</span><span>Digital twins, RL, graph ML, multilingual NLP</span></div>
+          <div class="fact"><span class="k">Education</span><span>CentraleSupélec · École Centrale Casablanca · ESSEC</span></div>
+          <div class="fact"><span class="k">Languages</span><span>Arabic (native), French, English</span></div>
+          <div class="fact"><span class="k">Base</span><span>Paris, France</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= CONTACT ================= -->
+<footer id="contact">
+  <div class="wrap">
+    <h2>Working on flows, graphs, or models that <em>should</em> speak your language? Let's talk.</h2>
+    <div class="foot-links">
+      <a href="mailto:abdelazizguelfane4@gmail.com">Email</a>
+      <a href="https://github.com/Abdelaziz03" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/abdelaziz-guelfane" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="colophon">© 2026 Abdelaziz Guelfane · Designed and built by hand (with a little help from Claude)</p>
+  </div>
+</footer>
+
+<script>
+const projects = [
+  {
+    cat:"research", catLabel:"Research · RL",
+    title:"MA-HGRL: Hierarchical Graph RL for BOM Optimization",
+    desc:"Memory-augmented hierarchical graph reinforcement learning agent for bill-of-materials optimization. Accepted at the NeurIPS 2025 AI for Science workshop.",
+    tags:["PyTorch","GNN","RL","NeurIPS"],
+    badge:"NeurIPS 2025",
+    link:"", linkLabel:"Paper"
+  },
+  {
+    cat:"research", catLabel:"Research · RL",
+    title:"BE-MDP / HOUCIN: Budgeted Exploration in Volatile MDPs",
+    desc:"Offline-to-online RL with an adaptive Lagrangian for exploring under a hard budget when environment dynamics drift. arXiv preprint, targeting AAAI 2027.",
+    tags:["RL","Offline RL","Lagrangian"],
+    badge:"arXiv 2026",
+    link:"", linkLabel:"Preprint"
+  },
+  {
+    cat:"research", catLabel:"Research · Architectures",
+    title:"Regime Belief Transformer",
+    desc:"A transformer that maintains explicit beliefs over latent environment regimes, bridging budgeted exploration with structured belief state modeling.",
+    tags:["Transformers","Belief states","POMDP"],
+    link:"", linkLabel:"Code"
+  },
+  {
+    cat:"twin", catLabel:"Digital Twins",
+    title:"Leakage Decomposition Framework",
+    desc:"Formal framework separating physical leakage (parts that truly leave a circular system) from informational leakage (parts the data loses track of), estimated over multi-year ERP transactions.",
+    tags:["Bayesian MFA","Entity resolution","Knowledge graphs"],
+    badge:"PhD keystone",
+    link:"", linkLabel:"About"
+  },
+  {
+    cat:"twin", catLabel:"Supply Chain Analytics",
+    title:"Flow Intelligence Engine",
+    desc:"Analytics tool over large-scale ERP transaction data: interactive Sankey flow visualization, dormant-stock detection, and scrap analysis for a global spare-parts network.",
+    tags:["SQL","Plotly","Jupyter","Sankey"],
+    link:"", linkLabel:"Demo"
+  },
+  {
+    cat:"twin", catLabel:"Visualization",
+    title:"Parametric Sankey Toolkit",
+    desc:"Reusable library for rendering supply chain flows at three abstraction levels, with Plotly, Mermaid, and D3 backends. The hero of this page is its spiritual sibling.",
+    tags:["D3","Plotly","Mermaid"],
+    link:"", linkLabel:"GitHub"
+  },
+  {
+    cat:"nlp", catLabel:"NLP · Vision-Language",
+    title:"pim-vlm-extractor",
+    desc:"Local Qwen2.5-VL pipeline that extracts component weights and materials from technical product documents, producing an enhanced BOM for life-cycle assessment screening.",
+    tags:["Qwen2.5-VL","Local inference","Structured extraction"],
+    link:"", linkLabel:"GitHub"
+  },
+  {
+    cat:"nlp", catLabel:"NLP · Multilingual",
+    title:"EuroBERT Post-Training & Quantization",
+    desc:"Contributor to the post-training of EuroBERT, a multilingual encoder family presented at EMNLP, plus quantization work at Illuin Technology: quality-versus-size tradeoffs with per-language degradation tracking.",
+    tags:["Quantization","Multilingual","Hugging Face"],
+    badge:"EMNLP",
+    link:"", linkLabel:"About"
+  },
+  {
+    cat:"nlp", catLabel:"NLP · Darija",
+    title:"AtlasIA: Moroccan Culture VLMs & Darija LLMs",
+    desc:"Open-source contributions to AtlasIA, the Moroccan AI community: training vision-language models grounded in Moroccan culture and language models for Darija.",
+    tags:["Darija","VLM","Open source"],
+    badge:"Community",
+    link:"https://huggingface.co/atlasia", linkLabel:"Hugging Face"
+  },
+  {
+    cat:"nlp", catLabel:"NLP · Arabic",
+    title:"Arabic RAG Platform, Rural Morocco",
+    desc:"Self-hosted retrieval-augmented generation system on constrained hardware, built around Arabic-specific failure modes: subword fragmentation, the MSA / Darija dialect gap, and missing evaluation data.",
+    tags:["RAG","Arabic NLP","Edge deployment"],
+    badge:"Deployed",
+    link:"", linkLabel:"Case study"
+  },
+  {
+    cat:"systems", catLabel:"Quantum ML",
+    title:"Quantum Systems ML with CANDELA",
+    desc:"Machine learning engineering project on quantum systems, alongside a top 5% worldwide finish in the IBM Quantum Challenge.",
+    tags:["Qiskit","ML engineering"],
+    badge:"Top 5% IBM QC",
+    link:"", linkLabel:"About"
+  },
+  // ---- Joint projects with M. El Barhichi ----
+  {cat:"nlp", catLabel:"NLP · Safety", title:"Jailbreak Detection Pipeline for Virtual Assistants",
+   desc:"End-to-end pipeline that flags jailbreak attempts against virtual assistants, classifying adversarial user inputs before they reach the model.",
+   tags:["LLM safety","Classification"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Jailbreak-Detection", linkLabel:"Code"},
+  {cat:"nlp", catLabel:"NLP · Multilingual", title:"Language Identification across 389 Languages",
+   desc:"Multilingual language ID at scale: heavy cleaning of noisy text, TF-IDF and fastText baselines, then fine-tuned transformer architectures.",
+   tags:["Transformers","fastText","Multilingual"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/AdvancedNLP-LanguageIDentification", linkLabel:"Code"},
+  {cat:"nlp", catLabel:"NLP · RAG", title:"Mouwajihi: Career Orientation Assistant",
+   desc:"Hackathon-built Graph-RAG assistant guiding Moroccan high school and university students through academic and career orientation.",
+   tags:["Graph-RAG","Knowledge graphs"], badge:"Hackathon", with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Mouwajihi", linkLabel:"Code"},
+  {cat:"nlp", catLabel:"NLP · Chatbots", title:"Intent Detection for a Tourism Chatbot",
+   desc:"Intent classifier routing tourism chatbot messages into categories such as booking, travel alerts and lost luggage.",
+   tags:["NLP","Intent classification"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Intent-Detection", linkLabel:"Code"},
+  {cat:"research", catLabel:"Research · RL", title:"RL for Autonomous Highway & Racetrack Control",
+   desc:"RL agents for driving: DQN for discrete lane changes and collision avoidance on a highway, and continuous-action control on a racetrack.",
+   tags:["DQN","Continuous control"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Reinforcement-Learning-Project", linkLabel:"Code"},
+  {cat:"research", catLabel:"Research · Multi-agent", title:"Self-Organized Multi-Agent Hazardous Waste Collection",
+   desc:"Simulation of heterogeneous robots collecting and disposing of radioactive waste on a grid, comparing communication-free and communication-enabled coordination.",
+   tags:["Multi-agent","Simulation"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Self-Organized-Multi-Agents-System", linkLabel:"Code"},
+  {cat:"research", catLabel:"Research · Generative", title:"WGANMF-GP: GANs for Recommender Systems",
+   desc:"Six-month research project extending matrix factorization recommenders with a Wasserstein objective and gradient penalty.",
+   tags:["GAN","Recommenders"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/WGANMF-GP", linkLabel:"Code"},
+  {cat:"research", catLabel:"Research · Simulation", title:"Crowd Behavior in Emergency Evacuations",
+   desc:"Social-force model of individual behavior during emergency evacuations, implemented and calibrated in Python.",
+   tags:["Agent-based modeling","Python"], with:"with M. El Barhichi",
+   link:"", linkLabel:""},
+  {cat:"ml", catLabel:"Computer Vision", title:"Computer Vision Mini-Projects",
+   desc:"Face detection, traffic sign recognition, image colorization and panorama stitching, with OpenCV and deep learning.",
+   tags:["OpenCV","Deep learning"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Computer-Vision-Projects", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Computer Vision", title:"Visual Search for Catalog Navigation",
+   desc:"Visual search over a luxury product catalog, comparing direct embedding similarity against classification-then-retrieval pipelines.",
+   tags:["Image retrieval","Embeddings"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Dior-Product-Visual-Search", linkLabel:"Code"},
+  {cat:"ml", catLabel:"MLOps", title:"Facial Emotion Recognition, End to End",
+   desc:"Emotion recognition service with OpenCV and Keras, containerized with Docker and served through a Flask web app.",
+   tags:["MLOps","Docker","Keras"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/MLOps-Facial-Emotion-Recognition", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Applied ML", title:"Protein Cellular Localization Prediction",
+   desc:"Predicting protein localization from heavily imbalanced data, benchmarking resampling strategies and model families.",
+   tags:["Imbalanced data","Bioinformatics"], with:"with M. El Barhichi",
+   link:"", linkLabel:""},
+  {cat:"ml", catLabel:"Applied ML", title:"Welding Quality Prediction",
+   desc:"ML models predicting mechanical properties of welds, replacing slow and destructive traditional quality assessment.",
+   tags:["Regression","Industry 4.0"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Welding-Quality-Prediction", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Applied ML", title:"SME Energy Customer Churn (BCG)",
+   desc:"Churn prediction and mitigation for the SME segment of an energy utility, from feature engineering to price-sensitivity analysis.",
+   tags:["Churn","XGBoost"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/BCG-Predicting-and-Mitigating-Customer-Churn-in-the-SME-Energy-Market", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Applied ML", title:"SpaceX Falcon 9 Landing Prediction (IBM)",
+   desc:"Full data science pipeline predicting first-stage landing success as a proxy for launch cost estimation.",
+   tags:["Data science","Classification"], with:"with M. El Barhichi",
+   link:"", linkLabel:""},
+  {cat:"ml", catLabel:"NLP · Text", title:"Movie Genre Classification",
+   desc:"Genre prediction from plot summaries with TF-IDF and embedding-based text classifiers.",
+   tags:["Text classification"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Movies-Genre-Classification", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Analytics", title:"Sales Analysis & Dashboards",
+   desc:"Sales analytics with interactive dashboards and strategic recommendations for data-driven decisions.",
+   tags:["Dashboards","BI"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Sales-Analysis", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Analytics", title:"Dental Clinic Network Optimization",
+   desc:"Predictive modeling, clustering and competitive analysis to optimize performance across a dental clinic network.",
+   tags:["Clustering","Forecasting"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Data-Driven-Dental-Clinic-Performance-Optimization", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Analytics", title:"Moroccan Pasta Market Study",
+   desc:"Market assessment of the Moroccan pasta sector: survey design, data collection and decision dashboards.",
+   tags:["Market research"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Market-Analysis-JECC", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Optimization", title:"Stochastic Optimization Algorithms",
+   desc:"Stochastic methods for non-convex, multimodal and non-differentiable objectives, implemented and compared.",
+   tags:["Optimization","Metaheuristics"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Stochastic-Optimization", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Optimization", title:"Internet Distribution in Shared Housing",
+   desc:"Cable-routing optimization for shared living spaces, comparing a custom algorithm against scipy solvers.",
+   tags:["Optimization","scipy"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Internet-Distribution-Optimization", linkLabel:"Code"},
+  {cat:"ml", catLabel:"Graphs", title:"Social Network Analysis",
+   desc:"Centrality-based analysis of social networks: edge, betweenness and closeness centrality across network types.",
+   tags:["Graph theory","NetworkX"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Graph-Therory-Social-Networks", linkLabel:"Code"},
+  {cat:"systems", catLabel:"Engineering", title:"Smart Rotary Parking System",
+   desc:"Ten-month team project designing and prototyping a rotary smart parking system, from mechanical design to control.",
+   tags:["Mechatronics","Teamwork"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Smart-Rotary-Parking", linkLabel:"Code"},
+  {cat:"systems", catLabel:"Robotics", title:"Waste-Collecting Robot",
+   desc:"Line-following robot built to collect waste, handling intersections and obstacle logic.",
+   tags:["Robotics","Embedded"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Robotics-project", linkLabel:"Code"},
+  {cat:"systems", catLabel:"Experimental", title:"Laser Data Transmission",
+   desc:"Experimental 1 Mbps data link over 30 meters using a laser diode.",
+   tags:["Optics","Signal processing"], with:"with M. El Barhichi",
+   link:"", linkLabel:""},
+  {cat:"systems", catLabel:"Human Factors", title:"Human-Centered Design in HMI",
+   desc:"Integrating human factors into human-machine system design to reduce errors and improve safety.",
+   tags:["HMI","Safety"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Human-Centered-Design-in-Human-Machine-Interaction--Enhancing-System-Performance-and-Safety", linkLabel:"Code"},
+  {cat:"systems", catLabel:"Data Engineering", title:"Alumni Career Scraper",
+   desc:"Web scraper collecting and structuring alumni career data from public profiles.",
+   tags:["Scraping","Python"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Alumnis-Scraping", linkLabel:"Code"},
+  {cat:"systems", catLabel:"Data Engineering", title:"Criminal Records Scraping to MySQL",
+   desc:"Scrapers feeding real-time public records into a structured MySQL database.",
+   tags:["Scraping","MySQL"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/Crime-info-web-scraping-mysql", linkLabel:"Code"},
+  {cat:"systems", catLabel:"Software", title:"Battleship, Test-First",
+   desc:"Battleship in Python built with test-driven development.",
+   tags:["Python","TDD"], with:"with M. El Barhichi",
+   link:"https://github.com/elbarhichi/battleship-game", linkLabel:"Code"},
+  {cat:"systems", catLabel:"Software", title:"Snake, OOP & TDD",
+   desc:"Object-oriented Snake with PyGlet, developed test-first.",
+   tags:["Python","PyGlet"], with:"with M. El Barhichi",
+   link:"", linkLabel:""}
+];
+
+const grid = document.getElementById('grid');
+const count = document.getElementById('proj-count');
+
+function render(filter){
+  const list = projects.filter(p => filter==='all' || p.cat===filter);
+  grid.innerHTML = list.map(p => `
+    <article class="card" data-cat="${p.cat}">
+      <span class="cat">${p.catLabel}</span>
+      <h3>${p.title}</h3>
+      ${p.badge ? `<span class="badge">${p.badge}</span>` : ``}
+      ${p.with ? `<span class="credit">${p.with}</span>` : ``}
+      <p>${p.desc}</p>
+      <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+      ${p.link ? `<div class="links"><a href="${p.link}" target="_blank" rel="noopener">${p.linkLabel} →</a></div>` : ``}
+    </article>`).join('');
+  count.textContent = list.length + (list.length===1 ? ' project' : ' projects');
+}
+
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('button'); if(!btn) return;
+  document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render(btn.dataset.f);
+});
+
+render('all');
+</script>
+</body>
+</html>
